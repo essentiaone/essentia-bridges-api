@@ -7,6 +7,7 @@ import requests
 
 from bridges_api.constants import (
     DEFAULT_HEADERS,
+    ETHEREUM_WALLET_NAME,
     WALLETS_BRIDGE_API_URL,
 )
 
@@ -20,19 +21,19 @@ class AbstractWalletsBridgeNetwork:
         """
         Wallet name to put it into URL.
         """
-        return ETHEREUM_WALLET_URL_SLUG
+        return ETHEREUM_WALLET_NAME
 
     def get_balance(self, address):
         """
         Get wallet balance.
         """
-        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/{address}/balance')
+        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/{address}/balance').json()
 
     def get_transaction_information(self, transaction_hash):
         """
         Get transaction information.
         """
-        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/transactions/{transaction_hash}')
+        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/transactions/{transaction_hash}').json()
 
     def send_transaction(self, raw_transaction_hash):
         """
@@ -48,4 +49,4 @@ class AbstractWalletsBridgeNetwork:
             WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/transactions',
             json=parameters,
             headers=DEFAULT_HEADERS,
-        )
+        ).json()
