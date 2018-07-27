@@ -5,7 +5,13 @@ The API wrapper written in Python allow you to speak with Bridges REST API in py
 [![Release](https://img.shields.io/github/release/essentiaone/essentia-bridges-api.svg)](https://github.com/essentiaone/essentia-bridges-api/releases)
 ![Python36](https://img.shields.io/badge/Python-3.6-brightgreen.svg)
 
-## Installing
+
+  * [Getting started](#getting-started)
+  * [API documentation](#api)
+    * [Wallets](#wallets)
+      * [Ethereum wallet](#ethereum-wallet)
+
+## Getting started
 
 Install and update using `pip3`:
 
@@ -13,7 +19,7 @@ Install and update using `pip3`:
 $ pip3 install essentia-bridges-api
 ```
 
-## Usage
+Simple usage of the library intoduced below:
 
 ```python
 >>> from bridges_api import bridges
@@ -77,17 +83,63 @@ Get information of the particular transaction of the wallet — `bridges.wallets
 }
 ```
 
+Send raw transaction hash to send to blockchain — `bridges.wallets.ethereum.send_transaction`
 
+| Arguments             | Type   | Required | Description                                        |
+| :--------------------:|:------:|:--------:|----------------------------------------------------|
+| raw_transaction_hash  | String | Yes      | Signed raw transaction hash to send to blockchain. |
 
+```python
+>>> raw_transaction_hash = '0xf86b7485028fa6ae00825208944aa548d7589f003486892777cbb..'
+>>> bridges.wallets.ethereum.send_transaction(raw_transaction_hash=raw_transaction_hash)
+{
+    "result": "0x9d8c5483c25a26a69b6b3b831ce68a917d1dec22a56882c4ea84a0d5ff14785c"
+}
+```
 
+Get transactions count of the wallet — `bridges.wallets.ethereum.get_transactions_count`
 
+| Arguments   | Type   | Required | Description                             |
+| :----------:|:------:|:--------:|-----------------------------------------|
+| address     | String | Yes      | Address to get transactions count from. |
 
+```python
+>>> address = '0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA'
+>>> bridges.wallets.ethereum.get_transactions_count(address=address)
+{
+    "result": "0x75"
+}
+```
 
+Get gas price — `bridges.wallets.ethereum.get_gas_price`
 
+```python
+>>> bridges.wallets.ethereum.get_gas_price()
+{
+    "result": "0x42294180"
+}
+```
 
+Get gas estimate — `bridges.wallets.ethereum.get_gas_estimate` 
 
+| Arguments   | Type   | Required | Description                                           |
+| :----------:|:------:|:--------:|-------------------------------------------------------|
+| address     | String | Yes      | Address to get estimate for.                          |
+| data        | String | No       | Arbitrary message of transaction. By default is "0x". |
 
+```python
+>>> address = 0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA
+>>> bridges.wallets.ethereum.get_gas_estimate(address=address)
+{
+    "result": "0x5208"
+}
+```
 
+Get block number — `bridges.wallets.ethereum.get_block_number`
 
-
-
+```python
+>>> bridges.wallets.ethereum.get_block_number()
+{
+    "result": "0x5c269c"
+}
+```
