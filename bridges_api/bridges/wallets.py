@@ -21,11 +21,14 @@ class EthereumWallet(AbstractWalletsBridgeNetwork):
 
     @property
     def wallet_name(self):
+        """
+        Wallet name.
+        """
         return ETHEREUM_WALLET_NAME
 
     def get_transactions_count(self, address):
         """
-        Get count of the transactions.
+        Get count of transactions.
         """
         return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/{address}/transactions/count').json()
 
@@ -39,7 +42,6 @@ class EthereumWallet(AbstractWalletsBridgeNetwork):
         """
         Get gas estimate.
         """
-
         request_parameters = self.get_request_parameters.create({
             'address': address,
             'data': data,

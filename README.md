@@ -19,7 +19,7 @@ Install and update using `pip3`:
 $ pip3 install essentia-bridges-api
 ```
 
-Simple usage of the library intoduced below:
+Simple usage of the library introduced below:
 
 ```python
 >>> from bridges_api import bridges
@@ -40,9 +40,9 @@ Simple usage of the library intoduced below:
 
 Get balance of the wallet — `bridges.wallets.ethereum.get_balance`
 
-| Arguments   | Type   | Required | Description                  |
-| :----------:|:------:|:--------:|------------------------------|
-| address     | String | Yes      | Address to get balance from. |
+| Arguments | Type   | Required | Description                  |
+| :--------:|:------:|:--------:|------------------------------|
+| address   | String | Yes      | Address to get balance from. |
 
 ```python
 >>> address = '0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA'
@@ -56,9 +56,9 @@ Get balance of the wallet — `bridges.wallets.ethereum.get_balance`
 
 Get information of the particular transaction of the wallet — `bridges.wallets.ethereum.get_transaction_information`
 
-| Arguments            | Type   | Required | Description                  |
-| :-------------------:|:------:|:--------:|------------------------------|
-| transaction_hash     | String | Yes      | Transaction hash.            |
+| Arguments        | Type   | Required | Description       |
+| :---------------:|:------:|:--------:|-------------------|
+| transaction_hash | String | Yes      | Transaction hash. |
 
 ```python
 >>> transaction_hash = '0x86e03096f808820404c62dea12c7c59cdc74fdbd9020b0d71c8aba39b4a143bb'
@@ -83,11 +83,11 @@ Get information of the particular transaction of the wallet — `bridges.wallets
 }
 ```
 
-Send raw transaction hash to send to blockchain — `bridges.wallets.ethereum.send_transaction`
+Send raw transaction hash to blockchain — `bridges.wallets.ethereum.send_transaction`
 
-| Arguments             | Type   | Required | Description                                        |
-| :--------------------:|:------:|:--------:|----------------------------------------------------|
-| raw_transaction_hash  | String | Yes      | Signed raw transaction hash to send to blockchain. |
+| Arguments            | Type   | Required | Description                                        |
+| :-------------------:|:------:|:--------:|----------------------------------------------------|
+| raw_transaction_hash | String | Yes      | Signed raw transaction hash to send to blockchain. |
 
 ```python
 >>> raw_transaction_hash = '0xf86b7485028fa6ae00825208944aa548d7589f003486892777cbb..'
@@ -99,15 +99,15 @@ Send raw transaction hash to send to blockchain — `bridges.wallets.ethereum.se
 
 Get transactions count of the wallet — `bridges.wallets.ethereum.get_transactions_count`
 
-| Arguments   | Type   | Required | Description                             |
-| :----------:|:------:|:--------:|-----------------------------------------|
-| address     | String | Yes      | Address to get transactions count from. |
+| Arguments | Type   | Required | Description                             |
+| :--------:|:------:|:--------:|-----------------------------------------|
+| address   | String | Yes      | Address to get transactions count from. |
 
 ```python
 >>> address = '0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA'
 >>> bridges.wallets.ethereum.get_transactions_count(address=address)
 {
-    "result": "0x75"
+    "result": 117
 }
 ```
 
@@ -116,22 +116,22 @@ Get gas price — `bridges.wallets.ethereum.get_gas_price`
 ```python
 >>> bridges.wallets.ethereum.get_gas_price()
 {
-    "result": "0x42294180"
+    "result": 100000000
 }
 ```
 
-Get gas estimate — `bridges.wallets.ethereum.get_gas_estimate` 
+Get gas limit estimate  — `bridges.wallets.ethereum.get_gas_estimate` 
 
-| Arguments   | Type   | Required | Description                                           |
-| :----------:|:------:|:--------:|-------------------------------------------------------|
-| address     | String | Yes      | Address to get estimate for.                          |
-| data        | String | No       | Arbitrary message of transaction. By default is "0x". |
+| Arguments | Type   | Required | Description                                           |
+| :--------:|:------:|:--------:|-------------------------------------------------------|
+| address   | String | Yes      | Address to get estimate for.                          |
+| data      | String | No       | Arbitrary message of transaction. By default is "0x". |
 
 ```python
->>> address = 0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA
+>>> address = '0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA'
 >>> bridges.wallets.ethereum.get_gas_estimate(address=address)
 {
-    "result": "0x5208"
+    "result": 21000
 }
 ```
 
@@ -140,6 +140,6 @@ Get block number — `bridges.wallets.ethereum.get_block_number`
 ```python
 >>> bridges.wallets.ethereum.get_block_number()
 {
-    "result": "0x5c269c"
+    "result": 6062378
 }
 ```

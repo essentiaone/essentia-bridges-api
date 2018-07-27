@@ -1,5 +1,5 @@
 """
-Provide implementation for abstract wallet.
+Provide implementation of abstract wallet.
 """
 from abc import abstractmethod
 
@@ -7,9 +7,9 @@ import requests
 
 from bridges_api.constants import (
     DEFAULT_HEADERS,
-    ETHEREUM_WALLET_NAME,
     WALLETS_BRIDGE_API_URL,
 )
+
 
 class AbstractWalletsBridgeNetwork:
     """
@@ -19,9 +19,9 @@ class AbstractWalletsBridgeNetwork:
     @abstractmethod
     def wallet_name(self):
         """
-        Wallet name to put it into URL.
+        Wallet name to put into URL.
         """
-        return ETHEREUM_WALLET_NAME
+        return
 
     def get_balance(self, address):
         """
@@ -39,7 +39,7 @@ class AbstractWalletsBridgeNetwork:
         """
         Send transaction.
 
-        Send signed raw transaction to the blockchain through bridge.
+        Send signed raw transaction to the blockchain through the bridge.
         """
         parameters = {
             'data': raw_transaction_hash,
