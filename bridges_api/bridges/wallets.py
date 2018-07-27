@@ -8,12 +8,16 @@ from bridges_api.constants import (
     ETHEREUM_WALLET_NAME,
     WALLETS_BRIDGE_API_URL,
 )
+from bridges_api.utils.requests import GetRequestParameters
 
 
 class EthereumWallet(AbstractWalletsBridgeNetwork):
     """
     Ethereum wallet implementation.
     """
+
+    def __init__(self):
+        self.get_request_parameters = GetRequestParameters()
 
     @property
     def wallet_name(self):
@@ -35,7 +39,13 @@ class EthereumWallet(AbstractWalletsBridgeNetwork):
         """
         Get gas estimate.
         """
-        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/gas/estimate' + '?' + f'address={address}&data={data}').json()
+
+        request_parameters = self.get_request_parameters.create({
+            'address': address,
+            'data': data,
+        })
+
+        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/gas/estimate' + request_parameters).json()
 
     def get_block_number(self):
         """
