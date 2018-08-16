@@ -162,6 +162,124 @@ Get balance of the wallet — `bridges.wallets.litecoin.get_balance`
 }
 ```
 
+Retrieve unspent outputs — `bridges.wallets.litecoin.get_unspent_transaction_outputs`
+
+| Arguments | Type   | Required | Description                             |
+| :-------: | :----: | :------: | --------------------------------------- |
+| address   | String | Yes      | Address of which to check transactions. |
+
+```python
+>>> address = 'LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF'
+>>> bridges.wallets.litecoin.get_unspent_transaction_outputs(address=address)
+{
+  "address": "LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF",
+  "amount": 0.00099999,
+  "confirmations": 1647,
+  "height": 1473441,
+  "satoshis": 99999,
+  "scriptPubKey": "76a9145955949e5acb12cba1cb7582c7b98eba6cdbf24b88ac",
+  "txid": "963c2cea7f47061481ba00417d85494c70c7176bf7309b4210d3c7428b361470",
+  "vout": 1
+}
+```
+
+Send transaction — `bridges.wallets.litecoin.send_transaction`
+
+| Arguments            | Type   | Required | Description                                        |
+| -------------------- | ------ | -------- | -------------------------------------------------- |
+| raw_transaction_hash | String | Yes      | Signed raw transaction hash to send to blockchain. |
+
+```python
+>>> raw_transaction_hash = '01000000016c0674df8d794f0b3fd8c960b30d3c18427728f73e78b052bd1..'
+>>> bridges.wallets.litecoin.send_transaction(raw_transaction_hash=raw_transaction_hash)
+{
+  "result": hash
+}
+```
+
+Retrieve history of transactions for the address — `bridges.wallets.litecoin.get_transactions_history`
+
+| Arguments | Type   | Required | Description                                        |
+| --------- | ------ | -------- | -------------------------------------------------- |
+| address   | String | Yes      | Signed raw transaction hash to send to blockchain. |
+
+```python
+>>> address = 'LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF'
+>>> bridges.wallets.litecoin.get_transactions_history(address=address)
+{
+    "totalItems": 32,
+    "from": 0,
+    "to": 32,
+    "items": [
+        {
+            "txid": "963c2cea7f47061481ba00417d85494c70c7176bf7309b4210d3c7428b361470",
+            "version": 1,
+            "locktime": 0,
+            "vin": [
+                {
+                    "txid": "ea5d2d51f07ab0a429dc8b9c4ac7976c60b954603b1afcc4686eb5c5b78e573d",
+                    "vout": 1,
+                    "sequence": 4294967295,
+                    "n": 0,
+                    "scriptSig": {
+                        "hex": "473044022018e1fe94719700a326fc2d2ce677fabd53dae4ebbb049079a35c99da2f9a6ee9022002354745ae0a1182e0af87d6e773d1f08ae234635ee24278a3a403543a9bc1ec01210390f17964138b5b7d526e0df653e47c62b72c8fe2f6569e4dbecb853cd2512ab3",
+                        "asm": "3044022018e1fe94719700a326fc2d2ce677fabd53dae4ebbb049079a35c99da2f9a6ee9022002354745ae0a1182e0af87d6e773d1f08ae234635ee24278a3a403543a9bc1ec[ALL] 0390f17964138b5b7d526e0df653e47c62b72c8fe2f6569e4dbecb853cd2512ab3"
+                    },
+                    "addr": "LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF",
+                    "valueSat": 1149999,
+                    "value": 0.01149999,
+                    "doubleSpentTxID": "None"
+                }
+            ],
+            "vout": [
+                {
+                    "value": "0.01000000",
+                    "n": 0,
+                    "scriptPubKey": {
+                        "hex": "76a914cf56a629660e236e88915ee72529f825cc9dfccc88ac",
+                        "asm": "OP_DUP OP_HASH160 cf56a629660e236e88915ee72529f825cc9dfccc OP_EQUALVERIFY OP_CHECKSIG",
+                        "addresses": [
+                            "Le8FwQRwpZR2nS9VXsn4KdintfpLCxEhk9"
+                        ],
+                        "type": "pubkeyhash"
+                    },
+                    "spentTxId": "None",
+                    "spentIndex": "None",
+                    "spentHeight": "None"
+                },
+                {
+                    "value": "0.00099999",
+                    "n": 1,
+                    "scriptPubKey": {
+                        "hex": "76a9145955949e5acb12cba1cb7582c7b98eba6cdbf24b88ac",
+                        "asm": "OP_DUP OP_HASH160 5955949e5acb12cba1cb7582c7b98eba6cdbf24b OP_EQUALVERIFY OP_CHECKSIG",
+                        "addresses": [
+                            "LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF"
+                        ],
+                        "type": "pubkeyhash"
+                    },
+                    "spentTxId": "None",
+                    "spentIndex": "None",
+                    "spentHeight": "None"
+                }
+            ],
+            "blockhash": "29f8f76b331ac2d7be1478fc1d732807259d5778cbd7ef3474155e03920a9a81",
+            "blockheight": 1473441,
+            "confirmations": 1668,
+            "time": 1534167772,
+            "blocktime": 1534167772,
+            "valueOut": 0.01099999,
+            "size": 225,
+            "valueIn": 0.01149999,
+            "fees": 0.0005
+        },
+        {
+            ...
+        }
+    ]
+}
+```
+
 Get information of the particular transaction of the wallet — `bridges.wallets.ethereum.get_transaction_information`
 
 | Arguments        | Type   | Required | Description       |
