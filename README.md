@@ -9,6 +9,7 @@ The API wrapper written in Python allow you to speak with Bridges REST API in py
   * [Getting started](#getting-started)
   * [API documentation](#api)
     * [Wallets](#wallets)
+      * [Bitcoin wallet](#bitcoin-wallet)
       * [Ethereum wallet](#ethereum-wallet)
 
 ## Getting started
