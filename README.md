@@ -143,3 +143,94 @@ Get block number — `bridges.wallets.ethereum.get_block_number`
     "result": 6062378
 }
 ```
+
+#### Litecoin wallet
+
+Get balance of the wallet — `bridges.wallets.litecoin.get_balance`
+
+| Arguments | Type   | Required | Description                  |
+| :--------:|:------:|:--------:|------------------------------|
+| address   | String | Yes      | Address to get balance from. |
+
+```python
+>>> address = 'LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF'
+>>> bridges.wallets.litecoin.get_balance(address=address)
+{
+    "result": {
+        "balance": 0.00099999
+    }
+}
+```
+
+Get information of the particular transaction of the wallet — `bridges.wallets.ethereum.get_transaction_information`
+
+| Arguments        | Type   | Required | Description       |
+| :---------------:|:------:|:--------:|-------------------|
+| transaction_hash | String | Yes      | Transaction hash. |
+
+```python
+>>> transaction_hash = '5d61a2bd067081fe792e703baf28cbb8bbee137e043909d0fd5a7ccddff87ce4'
+>>> bridges.wallets.litecoin.get_transaction_information(transaction_hash=transaction_hash)
+{
+    "blockhash": "730919fe24ee4a5daa27c0690ab1b197914b4f7e5a6c90b35ce74041a5930dbb",
+    "blockheight": 1474586,
+    "blocktime": 1534343622,
+    "confirmations": 2,
+    "fees": 0.01061571,
+    "locktime": 0,
+    "size": 226,
+    "time": 1534343622,
+    "txid": "5d61a2bd067081fe792e703baf28cbb8bbee137e043909d0fd5a7ccddff87ce4",
+    "valueIn": 9.59987334,
+    "valueOut": 9.58925763,
+    "version": 1,
+    "vin": [
+        {
+            "addr": "LTRJDsRDhxu1FD3qdNDr5oPK1qGHBuLTZW",
+            "doubleSpentTxID": null,
+            "n": 0,
+            "scriptSig": {
+                "asm": "3045022100a2c0147eeda8478a2468eb9f4ffa58418ad787da59c1c2bbdfb980a0b1fc3a1e02201c6b88424ccf589d2eeea94177744062a27541002bd4dfdbf891f948bcfd9ac5[ALL] 03ae0081f0b150b23c35ea80609064903db39c758cf504f4c7b6add6a64ca9836a",
+                "hex": "483045022100a2c0147eeda8478a2468eb9f4ffa58418ad787da59c1c2bbdfb980a0b1fc3a1e02201c6b88424ccf589d2eeea94177744062a27541002bd4dfdbf891f948bcfd9ac5012103ae0081f0b150b23c35ea80609064903db39c758cf504f4c7b6add6a64ca9836a"
+            },
+            "sequence": 4294967295,
+            "txid": "e1018d12bdceaf90b6bcc7091e1ed71fbf72839db4a9fb06987ce1877c94bf7d",
+            "value": 9.59987334,
+            "valueSat": 959987334,
+            "vout": 0
+        }
+    ],
+    "vout": [
+        {
+            "n": 0,
+            "scriptPubKey": {
+                "addresses": [
+                    "Ld8PiAcP88mrCjzpbPwZwRxk8ae492J8x4"
+                ],
+                "asm": "OP_DUP OP_HASH160 c46502c5059c3971516a25195ae08e9128fe1dd8 OP_EQUALVERIFY OP_CHECKSIG",
+                "hex": "76a914c46502c5059c3971516a25195ae08e9128fe1dd888ac",
+                "type": "pubkeyhash"
+            },
+            "spentHeight": null,
+            "spentIndex": null,
+            "spentTxId": null,
+            "value": "4.07153000"
+        },
+        {
+            "n": 1,
+            "scriptPubKey": {
+                "addresses": [
+                    "LSvLY6WcMPHvvLaW6A2n7BwA3zAkWrHWbJ"
+                ],
+                "asm": "OP_DUP OP_HASH160 546c1cbac0c236944ba46ff9827ddc1a748e76a8 OP_EQUALVERIFY OP_CHECKSIG",
+                "hex": "76a914546c1cbac0c236944ba46ff9827ddc1a748e76a888ac",
+                "type": "pubkeyhash"
+            },
+            "spentHeight": null,
+            "spentIndex": null,
+            "spentTxId": null,
+            "value": "5.51772763"
+        }
+    ]
+}
+```
