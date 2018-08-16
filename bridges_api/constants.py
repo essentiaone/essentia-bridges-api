@@ -4,4 +4,4 @@ DEFAULT_HEADERS = {
 
 ETHEREUM_WALLET_NAME = 'ethereum'
 
-WALLETS_BRIDGE_API_URL = 'http://185.92.221.252:2310/api/v1/'
+WALLETS_BRIDGE_API_URL = 'https://b3.essentia.network/api/v1/'
