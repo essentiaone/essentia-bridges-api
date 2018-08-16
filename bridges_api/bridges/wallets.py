@@ -5,6 +5,7 @@ import requests
 
 from bridges_api.abc.wallet import AbstractWalletsBridgeNetwork
 from bridges_api.constants import (
+    DEFAULT_HEADERS,
     ETHEREUM_WALLET_NAME,
     WALLETS_BRIDGE_API_URL,
 )
@@ -54,6 +55,35 @@ class EthereumWallet(AbstractWalletsBridgeNetwork):
         Get last block number.
         """
         return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/block-number').json()
+
+    def get_smart_contracts_count(self, address, data):
+        """
+        Get count of smart-contracts.
+        """
+        parameters = {
+            'address': address,
+            'data': data,
+        }
+
+        return requests.post(
+            WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/smart-contracts',
+            json=parameters,
+            headers=DEFAULT_HEADERS,
+        ).json()
+
+    def get_receipt(self, transaction_hash):
+        """
+        Get receipt of transaction.
+        """
+        return requests.get(
+            WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/transactions/receipts/{transaction_hash}'
+        ).json()
+
+    def get_gas_speed(self):
+        """
+        Get gas price.
+        """
+        return requests.get(WALLETS_BRIDGE_API_URL + f'third-party/{self.wallet_name}/gas-station/gas/price').json()
 
 
 class Wallets:
