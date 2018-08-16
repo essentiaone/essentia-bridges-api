@@ -143,3 +143,60 @@ Get block number — `bridges.wallets.ethereum.get_block_number`
     "result": 6062378
 }
 ```
+
+Get smart-contracts count  — `bridges.wallets.ethereum.get_smart_contracts_count`
+
+| Arguments | Type   | Required | Description                                           |
+| :--------:|:------:|:--------:|-------------------------------------------------------|
+| address   | String | Yes      | Address to get smart-contracts count from.            |
+| data      | String | Yes      | Arbitrary message of transaction. By default is "0x". |
+
+```python
+>>> address = '0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA'
+>>> bridges.wallets.ethereum.get_smart_contracts_count(address=address, data=data)
+{
+    "result": 2
+}
+```
+
+Get receipt of transaction  — `bridges.wallets.ethereum.get_receipt`
+
+| Arguments        | Type   | Required | Description       |
+| :---------------:|:------:|:--------:|-------------------|
+| transaction_hash | String | Yes      | Transaction hash. |
+
+```python
+>>> transaction_hash = '0x86e03096f808820404c62dea12c7c59cdc74fdbd9020b0d71c8aba39b4a143bb'
+>>> bridges.wallets.ethereum.get_receipt(transaction_hash=transaction_hash)
+{
+    "result": {
+        "blockHash": "0xac9bec5ba838618a8abd6152eeda25cb4d47511a038d7ba9e17dded924d725ce",
+        "blockNumber": "0x5df6e2",
+        "contractAddress": null,
+        "cumulativeGasUsed": "0x4c2740",
+        "from": "0xb563dde324fa9842e74bbf98571e9de4fd5fe9ba",
+        "gasUsed": "0x5208",
+        "logs": [],
+        "logsBloom": "0x000000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000000000000000000",
+        "status": "0x1",
+        "to": "0x4aa548d7589f003486892777cbb0b70dff5d6949",
+        "transactionHash": "0x73d53064c302af6ea1038273183e8da70b87f35cdd70e133b3e96225d3834c1c",
+        "transactionIndex": "0x83"
+    }
+}
+```
+
+Get gas speed — `bridges.wallets.ethereum.get_gas_speed`
+
+```python
+>>> bridges.wallets.ethereum.get_gas_speed()
+{
+    "result": 100000000
+}
+```
