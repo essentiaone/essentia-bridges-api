@@ -61,7 +61,7 @@ class EthereumWallet(AbstractWalletsBridgeNetwork):
         Get count of smart-contracts.
         """
         parameters = {
-            'address': address,
+            'to': address,
             'data': data,
         }
 

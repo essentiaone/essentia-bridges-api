@@ -153,9 +153,10 @@ Get smart-contracts count  — `bridges.wallets.ethereum.get_smart_contracts_cou
 
 ```python
 >>> address = '0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA'
+>>> data = '0x73d53064c302af6ea1038273183e8da70b87f35cdd70e133b3e96225d3834c1c'
 >>> bridges.wallets.ethereum.get_smart_contracts_count(address=address, data=data)
 {
-    "result": 2
+    "result": "0x"
 }
 ```
 
@@ -166,7 +167,7 @@ Get receipt of transaction  — `bridges.wallets.ethereum.get_receipt`
 | transaction_hash | String | Yes      | Transaction hash. |
 
 ```python
->>> transaction_hash = '0x86e03096f808820404c62dea12c7c59cdc74fdbd9020b0d71c8aba39b4a143bb'
+>>> transaction_hash = '0x73d53064c302af6ea1038273183e8da70b87f35cdd70e133b3e96225d3834c1c'
 >>> bridges.wallets.ethereum.get_receipt(transaction_hash=transaction_hash)
 {
     "result": {
@@ -197,6 +198,11 @@ Get gas speed — `bridges.wallets.ethereum.get_gas_speed`
 ```python
 >>> bridges.wallets.ethereum.get_gas_speed()
 {
-    "result": 100000000
+    "result":
+    {
+        Fast: 5,
+        Average: 3.1
+        SafeLow: 3
+    }
 }
 ```
