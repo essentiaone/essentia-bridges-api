@@ -62,9 +62,6 @@ class LitecoinWallet(AbstractWalletsBridgeNetwork):
     Litecoin wallet implementation.
     """
 
-    def __init__(self):
-        self.get_request_parameters = GetRequestParameters()
-
     @property
     def wallet_name(self):
         """
@@ -78,9 +75,9 @@ class LitecoinWallet(AbstractWalletsBridgeNetwork):
         """
         return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/{address}/transactions').json()
 
-    def get_unspent_transaction_outputs(self, address):
+    def get_utxo(self, address):
         """
-        Retrieve unspent outputs.
+        Get Unspent Transaction Outputs (UTXO).
         """
         return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/{address}/utxo').json()
 

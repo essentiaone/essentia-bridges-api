@@ -10,6 +10,7 @@ The API wrapper written in Python allow you to speak with Bridges REST API in py
   * [API documentation](#api)
     * [Wallets](#wallets)
       * [Ethereum wallet](#ethereum-wallet)
+      * [Litecoin wallet](#litecoin-wallet)
 
 ## Getting started
 
@@ -162,15 +163,15 @@ Get balance of the wallet — `bridges.wallets.litecoin.get_balance`
 }
 ```
 
-Retrieve unspent outputs — `bridges.wallets.litecoin.get_unspent_transaction_outputs`
+Get Unspent Transaction Outputs (UTXO) of the wallet — `bridges.wallets.litecoin.get_utxo`
 
-| Arguments | Type   | Required | Description                             |
-| :-------: | :----: | :------: | --------------------------------------- |
-| address   | String | Yes      | Address of which to check transactions. |
+| Arguments | Type   | Required | Description               |
+| :-------: | :----: | :------: | ------------------------- |
+| address   | String | Yes      | Address to get UTXO from. |
 
 ```python
 >>> address = 'LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF'
->>> bridges.wallets.litecoin.get_unspent_transaction_outputs(address=address)
+>>> bridges.wallets.litecoin.get_utxo(address=address)
 {
   "address": "LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF",
   "amount": 0.00099999,
@@ -183,7 +184,7 @@ Retrieve unspent outputs — `bridges.wallets.litecoin.get_unspent_transaction_o
 }
 ```
 
-Send transaction — `bridges.wallets.litecoin.send_transaction`
+Send raw transaction hash to blockchain — `bridges.wallets.litecoin.send_transaction`
 
 | Arguments            | Type   | Required | Description                                        |
 | -------------------- | ------ | -------- | -------------------------------------------------- |
@@ -193,7 +194,7 @@ Send transaction — `bridges.wallets.litecoin.send_transaction`
 >>> raw_transaction_hash = '01000000016c0674df8d794f0b3fd8c960b30d3c18427728f73e78b052bd1..'
 >>> bridges.wallets.litecoin.send_transaction(raw_transaction_hash=raw_transaction_hash)
 {
-  "result": hash
+  "txid": "3cbb038f6b21f09c9967a3d8b507ae996a0f17f4a8f665b8793e3b4a6e192c50"
 }
 ```
 
@@ -273,14 +274,12 @@ Retrieve history of transactions for the address — `bridges.wallets.litecoin.g
             "valueIn": 0.01149999,
             "fees": 0.0005
         },
-        {
-            ...
-        }
+        ...
     ]
 }
 ```
 
-Get information of the particular transaction of the wallet — `bridges.wallets.ethereum.get_transaction_information`
+Get information of the particular transaction of the wallet — `bridges.wallets.litecoin.get_transaction_information`
 
 | Arguments        | Type   | Required | Description       |
 | :---------------:|:------:|:--------:|-------------------|
