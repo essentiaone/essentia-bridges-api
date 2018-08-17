@@ -173,21 +173,21 @@ Get Unspent Transaction Outputs (UTXO) of the wallet — `bridges.wallets.liteco
 >>> address = 'LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF'
 >>> bridges.wallets.litecoin.get_utxo(address=address)
 {
-  "address": "LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF",
-  "amount": 0.00099999,
-  "confirmations": 1647,
-  "height": 1473441,
-  "satoshis": 99999,
-  "scriptPubKey": "76a9145955949e5acb12cba1cb7582c7b98eba6cdbf24b88ac",
-  "txid": "963c2cea7f47061481ba00417d85494c70c7176bf7309b4210d3c7428b361470",
-  "vout": 1
+    "address": "LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF",
+    "amount": 0.00099999,
+    "confirmations": 1647,
+    "height": 1473441,
+    "satoshis": 99999,
+    "scriptPubKey": "76a9145955949e5acb12cba1cb7582c7b98eba6cdbf24b88ac",
+    "txid": "963c2cea7f47061481ba00417d85494c70c7176bf7309b4210d3c7428b361470",
+    "vout": 1
 }
 ```
 
 Send raw transaction hash to blockchain — `bridges.wallets.litecoin.send_transaction`
 
 | Arguments            | Type   | Required | Description                                        |
-| -------------------- | ------ | -------- | -------------------------------------------------- |
+| :------------------: | :----: | :------: | -------------------------------------------------- |
 | raw_transaction_hash | String | Yes      | Signed raw transaction hash to send to blockchain. |
 
 ```python
@@ -198,11 +198,11 @@ Send raw transaction hash to blockchain — `bridges.wallets.litecoin.send_trans
 }
 ```
 
-Retrieve history of transactions for the address — `bridges.wallets.litecoin.get_transactions_history`
+Get transactions history of the wallet — `bridges.wallets.litecoin.get_transactions_history`
 
-| Arguments | Type   | Required | Description                                        |
-| --------- | ------ | -------- | -------------------------------------------------- |
-| address   | String | Yes      | Signed raw transaction hash to send to blockchain. |
+| Arguments | Type   | Required | Description                               |
+| :-------: | :----: | :------: | ----------------------------------------- |
+| address   | String | Yes      | Address to get transactions history from. |
 
 ```python
 >>> address = 'LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF'
