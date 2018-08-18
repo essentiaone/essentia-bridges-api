@@ -7,6 +7,7 @@ from bridges_api.abc.wallet import AbstractWalletsBridgeNetwork
 from bridges_api.constants import (
     BITCOIN_WALLET_NAME,
     ETHEREUM_WALLET_NAME,
+    LITECOIN_WALLET_NAME,
     WALLETS_BRIDGE_API_URL,
 )
 from bridges_api.utils.requests import GetRequestParameters
@@ -82,6 +83,31 @@ class EthereumWallet(AbstractWalletsBridgeNetwork):
         return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/block-number').json()
 
 
+class LitecoinWallet(AbstractWalletsBridgeNetwork):
+    """
+    Litecoin wallet implementation.
+    """
+
+    @property
+    def wallet_name(self):
+        """
+        Wallet name.
+        """
+        return LITECOIN_WALLET_NAME
+
+    def get_transactions_history(self, address):
+        """
+        Get transactions history.
+        """
+        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/{address}/transactions').json()
+
+    def get_utxo(self, address):
+        """
+        Get Unspent Transaction Outputs (UTXO).
+        """
+        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/{address}/utxo').json()
+
+
 class Wallets:
     """
     Proxy class for wallets.
@@ -100,3 +126,10 @@ class Wallets:
         Ethereum wallet proxy property.
         """
         return EthereumWallet()
+
+    @property
+    def litecoin(self):
+        """
+        Litecoin wallet proxy property.
+        """
+        return LitecoinWallet()
