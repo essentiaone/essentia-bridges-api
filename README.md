@@ -194,7 +194,7 @@ Send raw transaction hash to blockchain — `bridges.wallets.litecoin.send_trans
 >>> raw_transaction_hash = '01000000016c0674df8d794f0b3fd8c960b30d3c18427728f73e78b052bd1..'
 >>> bridges.wallets.litecoin.send_transaction(raw_transaction_hash=raw_transaction_hash)
 {
-  "txid": "3cbb038f6b21f09c9967a3d8b507ae996a0f17f4a8f665b8793e3b4a6e192c50"
+    "txid": "3cbb038f6b21f09c9967a3d8b507ae996a0f17f4a8f665b8793e3b4a6e192c50"
 }
 ```
 
