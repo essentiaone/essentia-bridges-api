@@ -182,7 +182,7 @@ class ThirdPartyWallets:
         """
         Third-party Ethereum wallet proxy property.
         """
-        return ThirdPartyEthereumWallet()
+        return ThirdPartyEthereumWallet(wallets_bridge_api_url=self.wallets_bridge_api_url)
 
 class Wallets:
     """
