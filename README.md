@@ -1,10 +1,9 @@
 # essentia-bridges-api
 
-The API wrapper written in Python allow you to speak with Bridges REST API in pythonic way.
+The API wrapper written in Python that allows you to communicate with Essentia bridges RESTful APIs in pythonic way.
 
 [![Release](https://img.shields.io/github/release/essentiaone/essentia-bridges-api.svg)](https://github.com/essentiaone/essentia-bridges-api/releases)
 ![Python36](https://img.shields.io/badge/Python-3.6-brightgreen.svg)
-
 
   * [Getting started](#getting-started)
   * [API documentation](#api)
