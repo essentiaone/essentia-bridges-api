@@ -3,21 +3,23 @@ Provide implementation for bridge wallets.
 """
 import requests
 
-from bridges_api.abc.wallet import AbstractWalletsBridgeNetwork
-from bridges_api.constants import (
+from essentia_bridges.abc.wallet import AbstractWalletsBridgeNetwork
+from essentia_bridges.constants import (
     BITCOIN_WALLET_NAME,
     DEFAULT_HEADERS,
     ETHEREUM_WALLET_NAME,
     LITECOIN_WALLET_NAME,
-    WALLETS_BRIDGE_API_URL,
 )
-from bridges_api.utils.requests import GetRequestParameters
+from essentia_bridges.utils.requests import GetRequestParameters
 
 
 class BitcoinWallet(AbstractWalletsBridgeNetwork):
     """
     Bitcoin wallet implementation.
     """
+
+    def __init__(self, wallets_bridge_api_url):
+        self.wallets_bridge_api_url = wallets_bridge_api_url
 
     @property
     def wallet_name(self):
@@ -30,13 +32,13 @@ class BitcoinWallet(AbstractWalletsBridgeNetwork):
         """
         Get Unspent Transaction Outputs (UTXO).
         """
-        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/{address}/utxo').json()
+        return requests.get(self.wallets_bridge_api_url + f'{self.wallet_name}/wallets/{address}/utxo').json()
 
     def get_transactions_history(self, address):
         """
         Get transactions history.
         """
-        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/{address}/transactions').json()
+        return requests.get(self.wallets_bridge_api_url + f'{self.wallet_name}/wallets/{address}/transactions').json()
 
 
 class EthereumWallet(AbstractWalletsBridgeNetwork):
@@ -44,7 +46,8 @@ class EthereumWallet(AbstractWalletsBridgeNetwork):
     Ethereum wallet implementation.
     """
 
-    def __init__(self):
+    def __init__(self, wallets_bridge_api_url):
+        self.wallets_bridge_api_url = wallets_bridge_api_url
         self.get_request_parameters = GetRequestParameters()
 
     @property
@@ -58,13 +61,15 @@ class EthereumWallet(AbstractWalletsBridgeNetwork):
         """
         Get count of transactions.
         """
-        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/{address}/transactions/count').json()
+        return requests.get(
+            self.wallets_bridge_api_url + f'{self.wallet_name}/wallets/{address}/transactions/count'
+        ).json()
 
     def get_gas_price(self):
         """
         Get gas price.
         """
-        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/gas/price').json()
+        return requests.get(self.wallets_bridge_api_url + f'{self.wallet_name}/gas/price').json()
 
     def get_gas_limit_estimate(self, address_from, address_to, data='0x'):
         """
@@ -77,7 +82,7 @@ class EthereumWallet(AbstractWalletsBridgeNetwork):
         }
 
         return requests.post(
-            WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/gas/estimate',
+            self.wallets_bridge_api_url + f'{self.wallet_name}/gas/estimate',
             json=parameters,
             headers=DEFAULT_HEADERS,
         ).json()
@@ -86,7 +91,7 @@ class EthereumWallet(AbstractWalletsBridgeNetwork):
         """
         Get last block number.
         """
-        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/block-number').json()
+        return requests.get(self.wallets_bridge_api_url + f'{self.wallet_name}/block-number').json()
 
     def get_smart_contracts_count(self, address, data):
         """
@@ -98,7 +103,7 @@ class EthereumWallet(AbstractWalletsBridgeNetwork):
         }
 
         return requests.post(
-            WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/smart-contracts',
+            self.wallets_bridge_api_url + f'{self.wallet_name}/smart-contracts',
             json=parameters,
             headers=DEFAULT_HEADERS,
         ).json()
@@ -108,7 +113,7 @@ class EthereumWallet(AbstractWalletsBridgeNetwork):
         Get receipt of transaction.
         """
         return requests.get(
-            WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/transactions/receipts/{transaction_hash}'
+            self.wallets_bridge_api_url + f'{self.wallet_name}/transactions/receipts/{transaction_hash}'
         ).json()
 
 
@@ -116,6 +121,9 @@ class LitecoinWallet(AbstractWalletsBridgeNetwork):
     """
     Litecoin wallet implementation.
     """
+
+    def __init__(self, wallets_bridge_api_url):
+        self.wallets_bridge_api_url = wallets_bridge_api_url
 
     @property
     def wallet_name(self):
@@ -128,19 +136,22 @@ class LitecoinWallet(AbstractWalletsBridgeNetwork):
         """
         Get transactions history.
         """
-        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/{address}/transactions').json()
+        return requests.get(self.wallets_bridge_api_url + f'{self.wallet_name}/wallets/{address}/transactions').json()
 
     def get_utxo(self, address):
         """
         Get Unspent Transaction Outputs (UTXO).
         """
-        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/{address}/utxo').json()
+        return requests.get(self.wallets_bridge_api_url + f'{self.wallet_name}/wallets/{address}/utxo').json()
 
 
 class ThirdPartyEthereumWallet(AbstractWalletsBridgeNetwork):
     """
     Third-party Ethereum wallet implementation.
     """
+
+    def __init__(self, wallets_bridge_api_url):
+        self.wallets_bridge_api_url = wallets_bridge_api_url
 
     @property
     def wallet_name(self):
@@ -153,13 +164,18 @@ class ThirdPartyEthereumWallet(AbstractWalletsBridgeNetwork):
         """
         Get gas price.
         """
-        return requests.get(WALLETS_BRIDGE_API_URL + f'third-party/{self.wallet_name}/gas-station/gas/price').json()
+        return requests.get(
+            self.wallets_bridge_api_url + f'third-party/{self.wallet_name}/gas-station/gas/price'
+        ).json()
 
 
 class ThirdPartyWallets:
     """
     Proxy class for third-party services related to wallets.
     """
+
+    def __init__(self, wallets_bridge_api_url):
+        self.wallets_bridge_api_url = wallets_bridge_api_url
 
     @property
     def ethereum(self):
@@ -173,29 +189,32 @@ class Wallets:
     Proxy class for wallets.
     """
 
+    def __init__(self, wallets_bridge_api_url):
+        self.wallets_bridge_api_url = wallets_bridge_api_url
+
     @property
     def bitcoin(self):
         """
         Bitcoin wallet proxy property.
         """
-        return BitcoinWallet()
+        return BitcoinWallet(wallets_bridge_api_url=self.wallets_bridge_api_url)
 
     @property
     def ethereum(self):
         """
         Ethereum wallet proxy property.
         """
-        return EthereumWallet()
+        return EthereumWallet(wallets_bridge_api_url=self.wallets_bridge_api_url)
 
     def litecoin(self):
         """
         Litecoin wallet proxy property.
         """
-        return LitecoinWallet()
+        return LitecoinWallet(wallets_bridge_api_url=self.wallets_bridge_api_url)
 
     @property
     def third_party(self):
         """
         Third-party wallets proxy property.
         """
-        return ThirdPartyWallets()
+        return ThirdPartyWallets(wallets_bridge_api_url=self.wallets_bridge_api_url)
