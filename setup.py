@@ -7,7 +7,7 @@ setup(
     author='Essentia.one developers',
     author_email='dev@essentia.one',
     url='https://github.com/essentiaone/essentia-bridges-api',
-    description='Essentia bridges API wrapper written in Python',
+    description='The API wrapper written in Python that allows you to communicate with Essentia bridges RESTful APIs in pythonic way.',
     download_url='https://github.com/essentiaone/essentia-bridges-api/archive/master.zip',
     license='MIT',
     keywords='essentia bridges api',
@@ -20,6 +20,6 @@ setup(
         'Development Status :: 5 - Production/Stable'
         'Programming Language :: Python :: 3.6',
         'License :: OSI Approved :: MIT License',
-        "Operating System :: OS Independent",
+        'Operating System :: OS Independent',
     ]
 )
