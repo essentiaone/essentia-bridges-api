@@ -24,14 +24,24 @@ $ pip3 install essentia-bridges-api
 Simple usage of the library introduced below:
 
 ```python
->>> from bridges_api import bridges
+>>> from essentia_bridges import EssentiaBridges
+>>> essentia_bridges = EssentiaBridges()
 >>> address = '0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA'
->>> bridges.wallets.ethereum.get_balance(address=address)
+>>> essentia_bridges.wallets.ethereum.get_balance(address=address)
 {
     "result": {
         "balance": 0.07724806191011209
     }
 }
+```
+
+If you want to specify custom host and/or port (by default public Essentia bridge is using), follow the example:
+
+```python
+>>> from essentia_bridges import EssentiaBridges
+>>> essentia_bridges = EssentiaBridges()
+>>> EssentiaBridges(host='https://b3.essentia.network', port=443)
+>>> EssentiaBridges(host='https://b3.essentia.network')
 ```
 
 ## API
@@ -48,7 +58,7 @@ Get balance of the wallet — `bridges.wallets.bitcoin.get_balance`
 
 ```python
 >>> address = '16DWEqF6pX314CjV5u2dmiMhcXtyY6z7od'
->>> bridges.wallets.bitcoin.get_balance(address=address)
+>>> essentia_bridges.wallets.bitcoin.get_balance(address=address)
 {
     "result": {
         "balance": 0.0001487
@@ -64,7 +74,7 @@ Get Unspent Transaction Outputs (UTXO) of the wallet — `bridges.wallets.bitcoi
 
 ```python
 >>> address = '16DWEqF6pX314CjV5u2dmiMhcXtyY6z7od'
->>> bridges.wallets.bitcoin.get_utxo(address=address)
+>>> essentia_bridges.wallets.bitcoin.get_utxo(address=address)
 [
     {
         "address": "16DWEqF6pX314CjV5u2dmiMhcXtyY6z7od",
@@ -97,7 +107,7 @@ Send raw transaction hash to blockchain — `bridges.wallets.bitcoin.send_transa
 
 ```python
 >>> raw_transaction_hash = '0100000001c5d33f8bd2cf21b42fa1b1a2993a94cdd93abaa886fe1e265...'
->>> bridges.wallets.bitcoin.send_transaction(raw_transaction_hash=raw_transaction_hash)
+>>> essentia_bridges.wallets.bitcoin.send_transaction(raw_transaction_hash=raw_transaction_hash)
 {
     "txid": "fb20f41645dd057b365a67f4b1a0d900a26b6a93be5245e954b838aafa44ce9d"
 }
@@ -111,7 +121,7 @@ Get transactions history of the wallet — `bridges.wallets.bitcoin.get_transact
 
 ```python
 >>> address = '16DWEqF6pX314CjV5u2dmiMhcXtyY6z7od'
->>> bridges.wallets.bitcoin.get_transactions_history(address=address)
+>>> essentia_bridges.wallets.bitcoin.get_transactions_history(address=address)
 {
     "from": 0,
     "items": [
@@ -230,7 +240,7 @@ Get information of the particular transaction of the wallet — `bridges.wallets
 
 ```python
 >>> transaction_hash = 'b7b707244f0b56a49ea9339b6a70c589f24bdacbb20d850f55e3bb855f386c87'
->>> bridges.wallets.bitcoin.get_transaction_information(transaction_hash=transaction_hash)
+>>> essentia_bridges.wallets.bitcoin.get_transaction_information(transaction_hash=transaction_hash)
 {
     "blockhash": "0000000000000000001a71f184d147b59a3ef170e094a9c2c435faffa6ce2262",
     "blockheight": 518607,
@@ -309,7 +319,7 @@ Get balance of the wallet — `bridges.wallets.ethereum.get_balance`
 
 ```python
 >>> address = '0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA'
->>> bridges.wallets.ethereum.get_balance(address=address)
+>>> essentia_bridges.wallets.ethereum.get_balance(address=address)
 {
     "result": {
         "balance": 0.07724806191011209
@@ -325,7 +335,7 @@ Get information of the particular transaction of the wallet — `bridges.wallets
 
 ```python
 >>> transaction_hash = '0x86e03096f808820404c62dea12c7c59cdc74fdbd9020b0d71c8aba39b4a143bb'
->>> bridges.wallets.ethereum.get_transaction_information(transaction_hash=transaction_hash)
+>>> essentia_bridges.wallets.ethereum.get_transaction_information(transaction_hash=transaction_hash)
 {
     "result": {
         "blockHash": "0x91a823e7c029d78ea1d46fd8aad5e8b631683a11c2ee5582f0ea5c845fbf5e64",
@@ -354,7 +364,7 @@ Send raw transaction hash to blockchain — `bridges.wallets.ethereum.send_trans
 
 ```python
 >>> raw_transaction_hash = '0xf86b7485028fa6ae00825208944aa548d7589f003486892777cbb..'
->>> bridges.wallets.ethereum.send_transaction(raw_transaction_hash=raw_transaction_hash)
+>>> essentia_bridges.wallets.ethereum.send_transaction(raw_transaction_hash=raw_transaction_hash)
 {
     "result": "0x9d8c5483c25a26a69b6b3b831ce68a917d1dec22a56882c4ea84a0d5ff14785c"
 }
@@ -368,7 +378,7 @@ Get transactions count of the wallet — `bridges.wallets.ethereum.get_transacti
 
 ```python
 >>> address = '0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA'
->>> bridges.wallets.ethereum.get_transactions_count(address=address)
+>>> essentia_bridges.wallets.ethereum.get_transactions_count(address=address)
 {
     "result": 153
 }
@@ -377,7 +387,7 @@ Get transactions count of the wallet — `bridges.wallets.ethereum.get_transacti
 Get gas price — `bridges.wallets.ethereum.get_gas_price`
 
 ```python
->>> bridges.wallets.ethereum.get_gas_price()
+>>> essentia_bridges.wallets.ethereum.get_gas_price()
 {
     "result": 1.8
 }
@@ -394,7 +404,7 @@ Get gas limit estimate  — `bridges.wallets.ethereum.get_gas_limit_estimate`
 ```python
 >>> address_from = '0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA'
 >>> address_to = '0x4aa548d7589f003486892777cbb0b70dff5d6949'
->>> bridges.wallets.ethereum.get_gas_limit_estimate(address_from=address_from, address_to=address_to)
+>>> essentia_bridges.wallets.ethereum.get_gas_limit_estimate(address_from=address_from, address_to=address_to)
 {
     "result": 21000
 }
@@ -403,7 +413,7 @@ Get gas limit estimate  — `bridges.wallets.ethereum.get_gas_limit_estimate`
 Get block number — `bridges.wallets.ethereum.get_block_number`
 
 ```python
->>> bridges.wallets.ethereum.get_block_number()
+>>> essentia_bridges.wallets.ethereum.get_block_number()
 {
     "result": 6062378
 }
@@ -419,7 +429,7 @@ Get smart-contracts count  — `bridges.wallets.ethereum.get_smart_contracts_cou
 ```python
 >>> address = '0x8f0921f30555624143d427b340b1156914882c10'
 >>> data = '0x70a082310000000000000000000000002f5059f64D5C0c4895092D26CDDacC58751e0C3C'
->>> bridges.wallets.ethereum.get_smart_contracts_count(address=address, data=data)
+>>> essentia_bridges.wallets.ethereum.get_smart_contracts_count(address=address, data=data)
 {
     "result": "0x0000000000000000000000000000000000000000000000006b9785ba97df3eed"
 }
@@ -433,7 +443,7 @@ Get receipt of transaction  — `bridges.wallets.ethereum.get_receipt`
 
 ```python
 >>> transaction_hash = '0x73d53064c302af6ea1038273183e8da70b87f35cdd70e133b3e96225d3834c1c'
->>> bridges.wallets.ethereum.get_receipt(transaction_hash=transaction_hash)
+>>> essentia_bridges.wallets.ethereum.get_receipt(transaction_hash=transaction_hash)
 {
     "result": {
         "blockHash": "0xac9bec5ba838618a8abd6152eeda25cb4d47511a038d7ba9e17dded924d725ce",
@@ -468,7 +478,7 @@ Get balance of the wallet — `bridges.wallets.litecoin.get_balance`
 
 ```python
 >>> address = 'LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF'
->>> bridges.wallets.litecoin.get_balance(address=address)
+>>> essentia_bridges.wallets.litecoin.get_balance(address=address)
 {
     "result": {
         "balance": 0.00099999
@@ -484,7 +494,7 @@ Get Unspent Transaction Outputs (UTXO) of the wallet — `bridges.wallets.liteco
 
 ```python
 >>> address = 'LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF'
->>> bridges.wallets.litecoin.get_utxo(address=address)
+>>> essentia_bridges.wallets.litecoin.get_utxo(address=address)
 {
     "address": "LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF",
     "amount": 0.00099999,
@@ -519,7 +529,7 @@ Get transactions history of the wallet — `bridges.wallets.litecoin.get_transac
 
 ```python
 >>> address = 'LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF'
->>> bridges.wallets.litecoin.get_transactions_history(address=address)
+>>> essentia_bridges.wallets.litecoin.get_transactions_history(address=address)
 {
     "totalItems": 32,
     "from": 0,
@@ -600,7 +610,7 @@ Get information of the particular transaction of the wallet — `bridges.wallets
 
 ```python
 >>> transaction_hash = '5d61a2bd067081fe792e703baf28cbb8bbee137e043909d0fd5a7ccddff87ce4'
->>> bridges.wallets.litecoin.get_transaction_information(transaction_hash=transaction_hash)
+>>> essentia_bridges.wallets.litecoin.get_transaction_information(transaction_hash=transaction_hash)
 {
     "blockhash": "730919fe24ee4a5daa27c0690ab1b197914b4f7e5a6c90b35ce74041a5930dbb",
     "blockheight": 1474586,
@@ -670,7 +680,7 @@ Get information of the particular transaction of the wallet — `bridges.wallets
 Get Ethereum gas price for [Gas Station](https://ethgasstation.info/) — `bridges.wallets.third_party.ethereum.get_gas_price`
 
 ```python
->>> bridges.wallets.third_party.ethereum.get_gas_price()
+>>> essentia_bridges.wallets.third_party.ethereum.get_gas_price()
 {
     "result": {
         "Fast": 4,

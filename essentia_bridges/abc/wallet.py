@@ -5,10 +5,7 @@ from abc import abstractmethod
 
 import requests
 
-from bridges_api.constants import (
-    DEFAULT_HEADERS,
-    WALLETS_BRIDGE_API_URL,
-)
+from essentia_bridges.constants import DEFAULT_HEADERS
 
 
 class AbstractWalletsBridgeNetwork:
@@ -27,13 +24,13 @@ class AbstractWalletsBridgeNetwork:
         """
         Get wallet balance.
         """
-        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/{address}/balance').json()
+        return requests.get(self.wallets_bridge_api_url + f'{self.wallet_name}/wallets/{address}/balance').json()
 
     def get_transaction_information(self, transaction_hash):
         """
         Get transaction information.
         """
-        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/transactions/{transaction_hash}').json()
+        return requests.get(self.wallets_bridge_api_url + f'{self.wallet_name}/transactions/{transaction_hash}').json()
 
     def send_transaction(self, raw_transaction_hash):
         """
@@ -46,7 +43,7 @@ class AbstractWalletsBridgeNetwork:
         }
 
         return requests.post(
-            WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/transactions',
+            self.wallets_bridge_api_url + f'{self.wallet_name}/wallets/transactions',
             json=parameters,
             headers=DEFAULT_HEADERS,
         ).json()
