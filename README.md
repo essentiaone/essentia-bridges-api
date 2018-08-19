@@ -195,7 +195,7 @@ Get receipt of transaction  — `bridges.wallets.ethereum.get_receipt`
 }
 ```
 
-#### Third party
+#### Third-party
 
 Get gas price for Ethereum wallet — `bridges.wallets.third_party.ethereum.get_gas_price`
 

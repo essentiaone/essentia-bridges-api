@@ -39,16 +39,21 @@ class EthereumWallet(AbstractWalletsBridgeNetwork):
         """
         return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/gas/price').json()
 
-    def get_gas_estimate(self, address, data='0x'):
+    def get_gas_estimate(self, address_from, address_to, data='0x'):
         """
         Get gas estimate.
         """
-        request_parameters = self.get_request_parameters.create({
-            'address': address,
+        parameters = {
+            'from': address_from,
+            'to': address_to,
             'data': data,
-        })
+        }
 
-        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/gas/estimate' + request_parameters).json()
+        return requests.post(
+            WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/gas/estimate',
+            json=parameters,
+            headers=DEFAULT_HEADERS,
+        ).json()
 
     def get_block_number(self):
         """
@@ -79,11 +84,37 @@ class EthereumWallet(AbstractWalletsBridgeNetwork):
             WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/transactions/receipts/{transaction_hash}'
         ).json()
 
-    def get_gas_speed(self):
+
+class ThirdPartyEthereumWallet(AbstractWalletsBridgeNetwork):
+    """
+    Third-party Ethereum wallet implementation.
+    """
+
+    @property
+    def wallet_name(self):
+        """
+        Wallet name.
+        """
+        return ETHEREUM_WALLET_NAME
+
+    def get_gas_price(self):
         """
         Get gas price.
         """
         return requests.get(WALLETS_BRIDGE_API_URL + f'third-party/{self.wallet_name}/gas-station/gas/price').json()
+
+
+class WalletsThirdParty:
+    """
+    Proxy class for third-party services related to wallets.
+    """
+
+    @property
+    def ethereum(self):
+        """
+        Third-party Ethereum wallet proxy property.
+        """
+        return ThirdPartyEthereumWallet()
 
 
 class Wallets:
@@ -97,3 +128,10 @@ class Wallets:
         Ethereum wallet proxy property.
         """
         return EthereumWallet()
+
+    @property
+    def third_party(self):
+        """
+        Third-party wallets proxy property.
+        """
+        return WalletsThirdParty()
