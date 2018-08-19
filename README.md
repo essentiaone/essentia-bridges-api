@@ -12,6 +12,7 @@ The API wrapper written in Python allow you to speak with Bridges REST API in py
       * [Bitcoin wallet](#bitcoin-wallet)
       * [Ethereum wallet](#ethereum-wallet)
       * [Litecoin wallet](#litecoin-wallet)
+      * [Third-party](#third-party)
 
 ## Getting started
 
@@ -370,7 +371,7 @@ Get transactions count of the wallet — `bridges.wallets.ethereum.get_transacti
 >>> address = '0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA'
 >>> bridges.wallets.ethereum.get_transactions_count(address=address)
 {
-    "result": 117
+    "result": 153
 }
 ```
 
@@ -379,20 +380,22 @@ Get gas price — `bridges.wallets.ethereum.get_gas_price`
 ```python
 >>> bridges.wallets.ethereum.get_gas_price()
 {
-    "result": 100000000
+    "result": 1.8
 }
 ```
 
-Get gas limit estimate  — `bridges.wallets.ethereum.get_gas_estimate` 
+Get gas limit estimate  — `bridges.wallets.ethereum.get_gas_limit_estimate`
 
-| Arguments | Type   | Required | Description                                           |
-| :--------:|:------:|:--------:|-------------------------------------------------------|
-| address   | String | Yes      | Address to get estimate for.                          |
-| data      | String | No       | Arbitrary message of transaction. By default is "0x". |
+| Arguments    | Type   | Required | Description                                           |
+| :-----------:|:------:|:--------:|-------------------------------------------------------|
+| address_from | String | Yes      | Address to transfer from.                             |
+| address_to   | String | Yes      | Address to get estimate for.                          |
+| data         | String | No       | Arbitrary message of transaction. By default is "0x". |
 
 ```python
->>> address = '0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA'
->>> bridges.wallets.ethereum.get_gas_estimate(address=address)
+>>> address_from = '0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA'
+>>> address_to = '0x4aa548d7589f003486892777cbb0b70dff5d6949'
+>>> bridges.wallets.ethereum.get_gas_limit_estimate(address_from=address_from, address_to=address_to)
 {
     "result": 21000
 }
@@ -404,6 +407,55 @@ Get block number — `bridges.wallets.ethereum.get_block_number`
 >>> bridges.wallets.ethereum.get_block_number()
 {
     "result": 6062378
+}
+```
+
+Get smart-contracts count  — `bridges.wallets.ethereum.get_smart_contracts_count`
+
+| Arguments | Type   | Required | Description                                           |
+| :--------:|:------:|:--------:|-------------------------------------------------------|
+| address   | String | Yes      | Address to get smart-contracts count from.            |
+| data      | String | Yes      | Arbitrary message of transaction. By default is "0x". |
+
+```python
+>>> address = '0x8f0921f30555624143d427b340b1156914882c10'
+>>> data = '0x70a082310000000000000000000000002f5059f64D5C0c4895092D26CDDacC58751e0C3C'
+>>> bridges.wallets.ethereum.get_smart_contracts_count(address=address, data=data)
+{
+    "result": "0x0000000000000000000000000000000000000000000000006b9785ba97df3eed"
+}
+```
+
+Get receipt of transaction  — `bridges.wallets.ethereum.get_receipt`
+
+| Arguments        | Type   | Required | Description       |
+| :---------------:|:------:|:--------:|-------------------|
+| transaction_hash | String | Yes      | Transaction hash. |
+
+```python
+>>> transaction_hash = '0x73d53064c302af6ea1038273183e8da70b87f35cdd70e133b3e96225d3834c1c'
+>>> bridges.wallets.ethereum.get_receipt(transaction_hash=transaction_hash)
+{
+    "result": {
+        "blockHash": "0xac9bec5ba838618a8abd6152eeda25cb4d47511a038d7ba9e17dded924d725ce",
+        "blockNumber": "0x5df6e2",
+        "contractAddress": null,
+        "cumulativeGasUsed": "0x4c2740",
+        "from": "0xb563dde324fa9842e74bbf98571e9de4fd5fe9ba",
+        "gasUsed": "0x5208",
+        "logs": [],
+        "logsBloom": "0x000000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000000000000000000",
+        "status": "0x1",
+        "to": "0x4aa548d7589f003486892777cbb0b70dff5d6949",
+        "transactionHash": "0x73d53064c302af6ea1038273183e8da70b87f35cdd70e133b3e96225d3834c1c",
+        "transactionIndex": "0x83"
+    }
 }
 ```
 
@@ -611,5 +663,20 @@ Get information of the particular transaction of the wallet — `bridges.wallets
             "value": "5.51772763"
         }
     ]
+}
+```
+
+#### Third-party
+
+Get Ethereum gas price for [Gas Station](https://ethgasstation.info/) — `bridges.wallets.third_party.ethereum.get_gas_price`
+
+```python
+>>> bridges.wallets.third_party.ethereum.get_gas_price()
+{
+    "result": {
+        "Fast": 4,
+        "Average": 1.8,
+        "SafeLow": 1.8
+    }
 }
 ```
