@@ -107,7 +107,7 @@ Get transactions count of the wallet — `bridges.wallets.ethereum.get_transacti
 >>> address = '0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA'
 >>> bridges.wallets.ethereum.get_transactions_count(address=address)
 {
-    "result": 117
+    "result": 153
 }
 ```
 
@@ -116,20 +116,22 @@ Get gas price — `bridges.wallets.ethereum.get_gas_price`
 ```python
 >>> bridges.wallets.ethereum.get_gas_price()
 {
-    "result": 100000000
+    "result": 1.8
 }
 ```
 
 Get gas limit estimate  — `bridges.wallets.ethereum.get_gas_estimate` 
 
-| Arguments | Type   | Required | Description                                           |
-| :--------:|:------:|:--------:|-------------------------------------------------------|
-| address   | String | Yes      | Address to get estimate for.                          |
-| data      | String | No       | Arbitrary message of transaction. By default is "0x". |
+| Arguments    | Type   | Required | Description                                           |
+| :-----------:|:------:|:--------:|-------------------------------------------------------|
+| address_from | String | Yes      | Address to transfer from.                             |
+| address_to   | String | Yes      | Address to get estimate for.                          |
+| data         | String | No       | Arbitrary message of transaction. By default is "0x". |
 
 ```python
->>> address = '0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA'
->>> bridges.wallets.ethereum.get_gas_estimate(address=address)
+>>> address_from = '0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA'
+>>> address_to = '0x4aa548d7589f003486892777cbb0b70dff5d6949'
+>>> bridges.wallets.ethereum.get_gas_estimate(address_from=address_from, address_to=address_to)
 {
     "result": 21000
 }
@@ -152,11 +154,11 @@ Get smart-contracts count  — `bridges.wallets.ethereum.get_smart_contracts_cou
 | data      | String | Yes      | Arbitrary message of transaction. By default is "0x". |
 
 ```python
->>> address = '0xb563Dde324fa9842E74bbf98571e9De4FD5FE9bA'
->>> data = '0x73d53064c302af6ea1038273183e8da70b87f35cdd70e133b3e96225d3834c1c'
+>>> address = '0x8f0921f30555624143d427b340b1156914882c10'
+>>> data = '0x70a082310000000000000000000000002f5059f64D5C0c4895092D26CDDacC58751e0C3C'
 >>> bridges.wallets.ethereum.get_smart_contracts_count(address=address, data=data)
 {
-    "result": "0x"
+    "result": "0x0000000000000000000000000000000000000000000000006b9785ba97df3eed"
 }
 ```
 
@@ -193,16 +195,18 @@ Get receipt of transaction  — `bridges.wallets.ethereum.get_receipt`
 }
 ```
 
-Get gas speed — `bridges.wallets.ethereum.get_gas_speed`
+#### Third party
+
+Get gas price for Ethereum wallet — `bridges.wallets.third_party.ethereum.get_gas_price`
 
 ```python
->>> bridges.wallets.ethereum.get_gas_speed()
+>>> bridges.wallets.third_party.ethereum.get_gas_price()
 {
     "result":
     {
-        Fast: 5,
-        Average: 3.1
-        SafeLow: 3
+        "Fast": 4,
+        "Average": 1.8
+        "SafeLow": 1.8
     }
 }
 ```
