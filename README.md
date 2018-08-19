@@ -673,10 +673,9 @@ Get Ethereum gas price for [Gas Station](https://ethgasstation.info/) — `bridg
 ```python
 >>> bridges.wallets.third_party.ethereum.get_gas_price()
 {
-    "result":
-    {
+    "result": {
         "Fast": 4,
-        "Average": 1.8
+        "Average": 1.8,
         "SafeLow": 1.8
     }
 }

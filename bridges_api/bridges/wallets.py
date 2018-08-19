@@ -156,7 +156,7 @@ class ThirdPartyEthereumWallet(AbstractWalletsBridgeNetwork):
         return requests.get(WALLETS_BRIDGE_API_URL + f'third-party/{self.wallet_name}/gas-station/gas/price').json()
 
 
-class WalletsThirdParty:
+class ThirdPartyWallets:
     """
     Proxy class for third-party services related to wallets.
     """
@@ -198,4 +198,4 @@ class Wallets:
         """
         Third-party wallets proxy property.
         """
-        return WalletsThirdParty()
+        return ThirdPartyWallets()
