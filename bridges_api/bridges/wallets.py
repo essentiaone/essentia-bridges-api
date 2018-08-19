@@ -5,11 +5,38 @@ import requests
 
 from bridges_api.abc.wallet import AbstractWalletsBridgeNetwork
 from bridges_api.constants import (
+    BITCOIN_WALLET_NAME,
     DEFAULT_HEADERS,
     ETHEREUM_WALLET_NAME,
+    LITECOIN_WALLET_NAME,
     WALLETS_BRIDGE_API_URL,
 )
 from bridges_api.utils.requests import GetRequestParameters
+
+
+class BitcoinWallet(AbstractWalletsBridgeNetwork):
+    """
+    Bitcoin wallet implementation.
+    """
+
+    @property
+    def wallet_name(self):
+        """
+        Wallet name.
+        """
+        return BITCOIN_WALLET_NAME
+
+    def get_utxo(self, address):
+        """
+        Get Unspent Transaction Outputs (UTXO).
+        """
+        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/{address}/utxo').json()
+
+    def get_transactions_history(self, address):
+        """
+        Get transactions history.
+        """
+        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/{address}/transactions').json()
 
 
 class EthereumWallet(AbstractWalletsBridgeNetwork):
@@ -39,9 +66,9 @@ class EthereumWallet(AbstractWalletsBridgeNetwork):
         """
         return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/gas/price').json()
 
-    def get_gas_estimate(self, address_from, address_to, data='0x'):
+    def get_gas_limit_estimate(self, address_from, address_to, data='0x'):
         """
-        Get gas estimate.
+        Get gas estimate limit.
         """
         parameters = {
             'from': address_from,
@@ -85,6 +112,31 @@ class EthereumWallet(AbstractWalletsBridgeNetwork):
         ).json()
 
 
+class LitecoinWallet(AbstractWalletsBridgeNetwork):
+    """
+    Litecoin wallet implementation.
+    """
+
+    @property
+    def wallet_name(self):
+        """
+        Wallet name.
+        """
+        return LITECOIN_WALLET_NAME
+
+    def get_transactions_history(self, address):
+        """
+        Get transactions history.
+        """
+        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/{address}/transactions').json()
+
+    def get_utxo(self, address):
+        """
+        Get Unspent Transaction Outputs (UTXO).
+        """
+        return requests.get(WALLETS_BRIDGE_API_URL + f'{self.wallet_name}/wallets/{address}/utxo').json()
+
+
 class ThirdPartyEthereumWallet(AbstractWalletsBridgeNetwork):
     """
     Third-party Ethereum wallet implementation.
@@ -116,11 +168,17 @@ class WalletsThirdParty:
         """
         return ThirdPartyEthereumWallet()
 
-
 class Wallets:
     """
     Proxy class for wallets.
     """
+
+    @property
+    def bitcoin(self):
+        """
+        Bitcoin wallet proxy property.
+        """
+        return BitcoinWallet()
 
     @property
     def ethereum(self):
@@ -128,6 +186,12 @@ class Wallets:
         Ethereum wallet proxy property.
         """
         return EthereumWallet()
+
+    def litecoin(self):
+        """
+        Litecoin wallet proxy property.
+        """
+        return LitecoinWallet()
 
     @property
     def third_party(self):
