@@ -24,5 +24,3 @@ class EssentiaBridges:
         Wallets bridge proxy property.
         """
         return Wallets(wallets_bridge_api_url=self.wallets_bridge_api_url)
-
-essentia_bridges = EssentiaBridges()

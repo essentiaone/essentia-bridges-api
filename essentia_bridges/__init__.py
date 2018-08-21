@@ -1,1 +1,1 @@
-from essentia_bridges.main import essentia_bridges
+from essentia_bridges.main import EssentiaBridges
