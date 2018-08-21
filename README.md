@@ -50,7 +50,7 @@ If you want to specify custom host and/or port (by default public Essentia bridg
 
 #### Bitcoin wallet
 
-Get balance of the wallet — `bridges.wallets.bitcoin.get_balance`
+Get balance of the wallet — `essentia_bridges.wallets.bitcoin.get_balance`
 
 | Arguments | Type   | Required | Description                  |
 | :--------:|:------:|:--------:|------------------------------|
@@ -66,7 +66,7 @@ Get balance of the wallet — `bridges.wallets.bitcoin.get_balance`
 }
 ```
 
-Get Unspent Transaction Outputs (UTXO) of the wallet — `bridges.wallets.bitcoin.get_utxo`
+Get Unspent Transaction Outputs (UTXO) of the wallet — `essentia_bridges.wallets.bitcoin.get_utxo`
 
 | Arguments | Type   | Required | Description               |
 | :--------:|:------:|:--------:|---------------------------|
@@ -99,7 +99,7 @@ Get Unspent Transaction Outputs (UTXO) of the wallet — `bridges.wallets.bitcoi
 ]
 ```
 
-Send raw transaction hash to blockchain — `bridges.wallets.bitcoin.send_transaction`
+Send raw transaction hash to blockchain — `essentia_bridges.wallets.bitcoin.send_transaction`
 
 | Arguments            | Type   | Required | Description                                        |
 | :-------------------:|:------:|:--------:|----------------------------------------------------|
@@ -113,7 +113,7 @@ Send raw transaction hash to blockchain — `bridges.wallets.bitcoin.send_transa
 }
 ```
 
-Get transactions history of the wallet — `bridges.wallets.bitcoin.get_transactions_history`
+Get transactions history of the wallet — `essentia_bridges.wallets.bitcoin.get_transactions_history`
 
 | Arguments | Type   | Required | Description                               |
 | :--------:|:------:|:--------:|-------------------------------------------|
@@ -232,7 +232,7 @@ Get transactions history of the wallet — `bridges.wallets.bitcoin.get_transact
 }
 ```
 
-Get information of the particular transaction of the wallet — `bridges.wallets.bitcoin.get_transaction_information`
+Get information of the particular transaction of the wallet — `essentia_bridges.wallets.bitcoin.get_transaction_information`
 
 | Arguments        | Type   | Required | Description       |
 | :---------------:|:------:|:--------:|-------------------|
@@ -311,7 +311,7 @@ Get information of the particular transaction of the wallet — `bridges.wallets
 
 #### Ethereum wallet
 
-Get balance of the wallet — `bridges.wallets.ethereum.get_balance`
+Get balance of the wallet — `essentia_bridges.wallets.ethereum.get_balance`
 
 | Arguments | Type   | Required | Description                  |
 | :--------:|:------:|:--------:|------------------------------|
@@ -327,7 +327,7 @@ Get balance of the wallet — `bridges.wallets.ethereum.get_balance`
 }
 ```
 
-Get information of the particular transaction of the wallet — `bridges.wallets.ethereum.get_transaction_information`
+Get information of the particular transaction of the wallet — `essentia_bridges.wallets.ethereum.get_transaction_information`
 
 | Arguments        | Type   | Required | Description       |
 | :---------------:|:------:|:--------:|-------------------|
@@ -356,7 +356,7 @@ Get information of the particular transaction of the wallet — `bridges.wallets
 }
 ```
 
-Send raw transaction hash to blockchain — `bridges.wallets.ethereum.send_transaction`
+Send raw transaction hash to blockchain — `essentia_bridges.wallets.ethereum.send_transaction`
 
 | Arguments            | Type   | Required | Description                                        |
 | :-------------------:|:------:|:--------:|----------------------------------------------------|
@@ -370,7 +370,7 @@ Send raw transaction hash to blockchain — `bridges.wallets.ethereum.send_trans
 }
 ```
 
-Get transactions count of the wallet — `bridges.wallets.ethereum.get_transactions_count`
+Get transactions count of the wallet — `essentia_bridges.wallets.ethereum.get_transactions_count`
 
 | Arguments | Type   | Required | Description                             |
 | :--------:|:------:|:--------:|-----------------------------------------|
@@ -384,7 +384,7 @@ Get transactions count of the wallet — `bridges.wallets.ethereum.get_transacti
 }
 ```
 
-Get gas price — `bridges.wallets.ethereum.get_gas_price`
+Get gas price — `essentia_bridges.wallets.ethereum.get_gas_price`
 
 ```python
 >>> essentia_bridges.wallets.ethereum.get_gas_price()
@@ -393,7 +393,7 @@ Get gas price — `bridges.wallets.ethereum.get_gas_price`
 }
 ```
 
-Get gas limit estimate  — `bridges.wallets.ethereum.get_gas_limit_estimate`
+Get gas limit estimate  — `essentia_bridges.wallets.ethereum.get_gas_limit_estimate`
 
 | Arguments    | Type   | Required | Description                                           |
 | :-----------:|:------:|:--------:|-------------------------------------------------------|
@@ -410,7 +410,7 @@ Get gas limit estimate  — `bridges.wallets.ethereum.get_gas_limit_estimate`
 }
 ```
 
-Get block number — `bridges.wallets.ethereum.get_block_number`
+Get block number — `essentia_bridges.wallets.ethereum.get_block_number`
 
 ```python
 >>> essentia_bridges.wallets.ethereum.get_block_number()
@@ -419,7 +419,7 @@ Get block number — `bridges.wallets.ethereum.get_block_number`
 }
 ```
 
-Get smart-contracts count  — `bridges.wallets.ethereum.get_smart_contracts_count`
+Get smart-contracts count  — `essentia_bridges.wallets.ethereum.get_smart_contracts_count`
 
 | Arguments | Type   | Required | Description                                           |
 | :--------:|:------:|:--------:|-------------------------------------------------------|
@@ -435,7 +435,7 @@ Get smart-contracts count  — `bridges.wallets.ethereum.get_smart_contracts_cou
 }
 ```
 
-Get receipt of transaction  — `bridges.wallets.ethereum.get_receipt`
+Get receipt of transaction  — `essentia_bridges.wallets.ethereum.get_receipt`
 
 | Arguments        | Type   | Required | Description       |
 | :---------------:|:------:|:--------:|-------------------|
@@ -470,7 +470,7 @@ Get receipt of transaction  — `bridges.wallets.ethereum.get_receipt`
 
 #### Litecoin wallet
 
-Get balance of the wallet — `bridges.wallets.litecoin.get_balance`
+Get balance of the wallet — `essentia_bridges.wallets.litecoin.get_balance`
 
 | Arguments | Type   | Required | Description                  |
 | :--------:|:------:|:--------:|------------------------------|
@@ -486,7 +486,7 @@ Get balance of the wallet — `bridges.wallets.litecoin.get_balance`
 }
 ```
 
-Get Unspent Transaction Outputs (UTXO) of the wallet — `bridges.wallets.litecoin.get_utxo`
+Get Unspent Transaction Outputs (UTXO) of the wallet — `essentia_bridges.wallets.litecoin.get_utxo`
 
 | Arguments | Type   | Required | Description               |
 | :-------: | :----: | :------: | ------------------------- |
@@ -507,7 +507,7 @@ Get Unspent Transaction Outputs (UTXO) of the wallet — `bridges.wallets.liteco
 }
 ```
 
-Send raw transaction hash to blockchain — `bridges.wallets.litecoin.send_transaction`
+Send raw transaction hash to blockchain — `essentia_bridges.wallets.litecoin.send_transaction`
 
 | Arguments            | Type   | Required | Description                                        |
 | :------------------: | :----: | :------: | -------------------------------------------------- |
@@ -521,7 +521,7 @@ Send raw transaction hash to blockchain — `bridges.wallets.litecoin.send_trans
 }
 ```
 
-Get transactions history of the wallet — `bridges.wallets.litecoin.get_transactions_history`
+Get transactions history of the wallet — `essentia_bridges.wallets.litecoin.get_transactions_history`
 
 | Arguments | Type   | Required | Description                               |
 | :-------: | :----: | :------: | ----------------------------------------- |
@@ -602,7 +602,7 @@ Get transactions history of the wallet — `bridges.wallets.litecoin.get_transac
 }
 ```
 
-Get information of the particular transaction of the wallet — `bridges.wallets.litecoin.get_transaction_information`
+Get information of the particular transaction of the wallet — `essentia_bridges.wallets.litecoin.get_transaction_information`
 
 | Arguments        | Type   | Required | Description       |
 | :---------------:|:------:|:--------:|-------------------|
@@ -677,7 +677,7 @@ Get information of the particular transaction of the wallet — `bridges.wallets
 
 #### Third-party
 
-Get Ethereum gas price for [Gas Station](https://ethgasstation.info/) — `bridges.wallets.third_party.ethereum.get_gas_price`
+Get Ethereum gas price for [Gas Station](https://ethgasstation.info/) — `essentia_bridges.wallets.third_party.ethereum.get_gas_price`
 
 ```python
 >>> essentia_bridges.wallets.third_party.ethereum.get_gas_price()
